@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+}
+html, body{
+  min-height: 100%;
+}
+  
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.tab-container {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+}
+.tab {
+  padding: 1rem;
+  flex-basis: 8rem;
+  text-align: center;
+}
+.tab.active {
+  border-bottom: 2px solid black;
+  background-color: ;
+}
+.game-container {
+  padding: 1rem;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.stats-is-active .stats-container {
+  display: flex;
+}
+.game-is-active .game-container {
+  display: flex;
+}
+
+h1 {
+  font-size: 100px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1rem 0;
+}
+.foosball-table {
+  width: 600px;
+  border: 5px solid black;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+input, select {
+    margin: 1rem 0;
+    padding: 1rem;  
+    border: 2px solid black;
+    width: 10rem;
+    font-size: 2rem;
+    text-align: center;
+}
+select {
+  text-align: left;
+  width: 14rem;
+}
+select:focus, 
+select:active {
+  outline: 2px solid #04AA6D;
+}
+
+button {
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+}
+.button {
+  border: 2px solid black;
+}
+.button:focus,
+.button:active {
+  
+  outline: 2px solid #04AA6D;
+}
+
+
+
+.stats-container {
+  width: 100%;
+  padding: 2rem;
+  min-height: 80vh;
+  display: none;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.stats-container div {
+  flex: 0 0 48%;
+}
+  
+h2 {
+  text-align: center;
+}
+.stats-container table {
+  margin: 1rem;
+}
+
+/* Scores */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+td.bold {
+  font-weight: 700;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
