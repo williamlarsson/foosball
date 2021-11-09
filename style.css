@@ -1,11 +1,12 @@
 * {
   box-sizing: border-box;
 }
-html, body{
+html,
+body {
   min-height: 100%;
 }
-  
-body{
+
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +17,7 @@ body{
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  border-bottom: 1px solid rgba(0,0,0,.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .tab {
   padding: 1rem;
@@ -57,21 +58,22 @@ h1 {
   align-items: center;
   justify-content: center;
 }
-input, select {
-    margin: 1rem 0;
-    padding: 1rem;  
-    border: 2px solid black;
-    width: 10rem;
-    font-size: 2rem;
-    text-align: center;
+input,
+select {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 2px solid black;
+  width: 10rem;
+  font-size: 2rem;
+  text-align: center;
 }
 select {
   text-align: left;
   width: 14rem;
 }
-select:focus, 
+select:focus,
 select:active {
-  outline: 2px solid #04AA6D;
+  outline: 2px solid #04aa6d;
 }
 
 button {
@@ -85,11 +87,8 @@ button {
 }
 .button:focus,
 .button:active {
-  
-  outline: 2px solid #04AA6D;
+  outline: 2px solid #04aa6d;
 }
-
-
 
 .stats-container {
   width: 100%;
@@ -102,7 +101,7 @@ button {
 .stats-container div {
   flex: 0 0 48%;
 }
-  
+
 h2 {
   text-align: center;
 }
@@ -117,7 +116,8 @@ table {
   width: 100%;
 }
 
-table td, table th {
+table td,
+table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -125,14 +125,58 @@ td.bold {
   font-weight: 700;
 }
 
-table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-table tr:hover {background-color: #ddd;}
+table tr:hover {
+  background-color: #ddd;
+}
 
 table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
+}
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  line-height: 1;
+}
+.form:after {
+  content: "➠";
+}
+.form.hot {
+  font-size: 40px;
+  color: green;
+  transform: rotate(-90deg);
+}
+.form.warmer {
+  font-size: 30px;
+  color: yellowgreen;
+  transform: rotate(-90deg);
+}
+.form.warm {
+  font-size: 30px;
+  color: yellowgreen;
+  transform: rotate(-90deg);
+}
+.form.cold {
+  font-size: 30px;
+  color: #ede73b;
+  transform: rotate(90deg);
+}
+.form.colder {
+  font-size: 30px;
+  color: orange;
+  transform: rotate(90deg);
+}
+.form.freezing {
+  font-size: 40px;
+  color: red;
+  transform: rotate(90deg);
 }
