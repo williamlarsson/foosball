@@ -313,19 +313,34 @@ function init() {
 
         const standings = calcTable();
         if (!standings) return;
-        DOM.standingsContainer.innerHTML = `
-            <tr>
-                <th>Player</th>
-                <th>Wins</th>
-                <th>Losses</th>
-                <th>Goals for</th>
-                <th>Goals against</th>
-                <th>Goal difference</th>
-                <th>Form</th>
-                <th>Last 5</th>
-                <th>Score</th>
-            </tr>
-        `;
+        if (window.innerWidth > 600) {
+            DOM.standingsContainer.innerHTML = `
+                <tr>
+                    <th>Player</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Goals for</th>
+                    <th>Goals against</th>
+                    <th>Goal difference</th>
+                    <th>Form</th>
+                    <th>Last 5</th>
+                    <th>Score</th>
+                </tr>
+            `;
+        } else {
+
+            DOM.standingsContainer.innerHTML = `
+                <tr>
+                    <th>Player</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Goal difference</th>
+                    <th>Form</th>
+                    <th>Last 5</th>
+                    <th>Score</th>
+                </tr>
+            `;
+        }
         const sortedStandings = standings.sort((a, b) => {
             if (b.score == a.score) {
                 return b.form - a.form
@@ -333,22 +348,41 @@ function init() {
                 return b.score - a.score
             }
         })
-        sortedStandings.forEach(player => {
-            const markup = `
-                <tr>
-                    <td>${player.name}</td>
-                    <td>${player.wins}</td>
-                    <td>${player.losses}</td>
-                    <td>${player.goalsFor}</td>
-                    <td>${player.goalsAgainst}</td>
-                    <td>${player.goalDifference}</td>
-                    <td><span class="form ${calcForm(player.form.score)}" ></span></td>
-                    <td >${player.form.score}</td>
-                    <td class="bold">${player.score}</td>
-                </tr>
-            `
-            DOM.standingsContainer.insertAdjacentHTML('beforeend', markup);
-        });
+        if (window.innerWidth > 600) {
+            sortedStandings.forEach(player => {
+                const markup = `
+                    <tr>
+                        <td>${player.name}</td>
+                        <td>${player.wins}</td>
+                        <td>${player.losses}</td>
+                        <td>${player.goalsFor}</td>
+                        <td>${player.goalsAgainst}</td>
+                        <td>${player.goalDifference}</td>
+                        <td><span class="form ${calcForm(player.form.score)}" ></span></td>
+                        <td >${player.form.score}</td>
+                        <td class="bold">${player.score}</td>
+                    </tr>
+                `
+                DOM.standingsContainer.insertAdjacentHTML('beforeend', markup);
+            });
+
+        } else {
+            sortedStandings.forEach(player => {
+                const markup = `
+                    <tr>
+                        <td>${player.name}</td>
+                        <td>${player.wins}</td>
+                        <td>${player.losses}</td>
+                        <td>${player.goalDifference}</td>
+                        <td><span class="form ${calcForm(player.form.score)}" ></span></td>
+                        <td >${player.form.score}</td>
+                        <td class="bold">${player.score}</td>
+                    </tr>
+                `
+                DOM.standingsContainer.insertAdjacentHTML('beforeend', markup);
+            });
+
+        }
     }
 
     renderOptions();
