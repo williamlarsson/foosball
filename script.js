@@ -40,6 +40,10 @@ function init() {
             name: 'Ditte',
             id: 10,
         },
+        {
+            name: 'Frederik',
+            id: 11,
+        },
     ]
 
     const DOM = {
