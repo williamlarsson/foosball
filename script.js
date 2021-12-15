@@ -1,3 +1,31 @@
+const t = [3, 5, 8]
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDxBP43uCeNGmeKOSDcouJd7HNRdkyz7rQ",
+    authDomain: "foosball-26a5c.firebaseapp.com",
+    projectId: "foosball-26a5c",
+    storageBucket: "foosball-26a5c.appspot.com",
+    messagingSenderId: "540502855447",
+    appId: "1:540502855447:web:fadf721cb01fc80ab9f152",
+};
+firebase.initializeApp(firebaseConfig);
+var firebaseDatabase = firebase.firestore();
+var scoresDoc = firebaseDatabase.collection("scores").doc("fVrdOakjOxeEX1lCQpPr");
+
+scoresDoc
+    .get()
+    .then((doc) => {
+        if (doc.exists) {
+            window.localStorage.setItem('scores', doc.data()['allscores'])
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    })
+    .catch((error) => {
+        console.log("Error getting document:", error);
+    });
+
 function init() {
     const players = [
         {
@@ -187,6 +215,9 @@ function init() {
         if (!window.localStorage.getItem('scores')) {
 
             window.localStorage.setItem('scores', JSON.stringify(scores))
+            scoresDoc.set({
+                allscores: JSON.stringify(scores)
+            })
         } else {
 
             const oldScores = JSON.parse(window.localStorage.getItem('scores'));
@@ -195,7 +226,9 @@ function init() {
                 ...oldScores
             ]
             window.localStorage.setItem('scores', JSON.stringify(newScores))
-
+            scoresDoc.set({
+                allscores: JSON.stringify(newScores)
+            })
         }
 
 
