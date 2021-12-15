@@ -16,7 +16,10 @@ scoresDoc
     .get()
     .then((doc) => {
         if (doc.exists) {
+            window.local
             window.localStorage.setItem('scores', doc.data()['allscores'])
+            console.log("Fetched document!", doc.data());
+            init()
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -459,4 +462,4 @@ function init() {
     // showGame()
     showStats()
 }
-window.addEventListener('load', init);
+// window.addEventListener('load', init);
