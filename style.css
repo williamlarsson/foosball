@@ -107,9 +107,6 @@ button {
 h2 {
   text-align: center;
 }
-.stats-container table {
-  margin: 1rem;
-}
 
 /* Scores */
 
@@ -196,9 +193,6 @@ table th {
   .stats-is-active .stats-container {
     display: block;
     padding: 0.5rem;
-  }
-  .stats-container table {
-    margin: 0;
   }
   .stats-container .standings {
     transform: scale(0.83);

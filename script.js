@@ -44,10 +44,29 @@ function init() {
             name: 'Frederik',
             id: 11,
         },
+        {
+            name: 'Line',
+            id: 12,
+        },
+        {
+            name: 'Semir',
+            id: 13,
+        },
+        {
+            name: 'Jakob',
+            id: 14,
+        },
+        {
+            name: 'Anton',
+            id: 15,
+        },
+        {
+            name: 'Oliver',
+            id: 16,
+        },
     ]
     const now = new Date();
-    const oneMonthAgo = new Date(new Date(now).setDate(now.getDate() - 7));
-
+    const oneMonthAgo = new Date(new Date(now).setDate(now.getDate() - 29));
 
     const DOM = {
         team1Score: document.querySelector('#team1Score'),
@@ -136,7 +155,8 @@ function init() {
         e.preventDefault();
         const team1Score = parseInt(DOM.team1Score.value);
         const team2Score = parseInt(DOM.team2Score.value);
-
+        DOM.team1Score.value = null
+        DOM.team1Score.value = null
         const scores = [
             {
                 timestamp: new Date(),
@@ -320,7 +340,7 @@ function init() {
                     <tr>
                         <td class="${winner == 1 ? 'bold' : ''}">${game.team1[0].player} - ${game.team1[1].player}</td>
                         <td class="${winner == 2 ? 'bold' : ''}">${game.team2[0].player} - ${game.team2[1].player}</td>
-                        <td >${new Date(game.timestamp).getDate() + "/" + (new Date(game.timestamp).getMonth() + 1)}</td>
+                        <td>${scoreDate.getDate()}/${scoreDate.getMonth() + 1}</td>
                         <td>${game.score.team1} - ${game.score.team2}</td>
                     </tr>
                 `
