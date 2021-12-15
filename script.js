@@ -1,5 +1,3 @@
-const t = [3, 5, 8]
-
 const firebaseConfig = {
     apiKey: "AIzaSyDxBP43uCeNGmeKOSDcouJd7HNRdkyz7rQ",
     authDomain: "foosball-26a5c.firebaseapp.com",
@@ -260,7 +258,7 @@ function init() {
     }
 
     function calcTable() {
-
+        if (!window.localStorage.getItem('scores')) return
         const scores = JSON.parse(window.localStorage.getItem('scores'));
         let table = [];
         scores.forEach(score => {
@@ -462,4 +460,3 @@ function init() {
     // showGame()
     showStats()
 }
-// window.addEventListener('load', init);
