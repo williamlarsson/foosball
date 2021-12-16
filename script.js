@@ -131,8 +131,8 @@ function init() {
         DOM.tabs.stats.addEventListener('click', onTabClick);
         DOM.buttons.randomizeTeams.addEventListener('click', randomizeTeams)
         DOM.form.addEventListener('submit', registerGame);
-        DOM.statsInfo.statsInfoButton.addEventListener('click', () => {
-            DOM.statsInfo.statsInfoText.classList.add('is-visible')
+        DOM.statsInfo.statsInfoButton.addEventListener('click', (e) => {
+            DOM.statsInfo.statsInfoText.classList.toggle('is-visible')
         });
     }
 
@@ -275,7 +275,6 @@ function init() {
         let team1PositionAverage = (player1Pos + player2Pos) / 2
         let team2PositionAverage = (player3Pos + player4Pos) / 2
         let diff = (team1PositionAverage - team2PositionAverage) * 0.1
-        console.log('Math.max(diff, 0)', Math.max(diff, 0))
         return Math.max(diff, 0)
     }
 
@@ -393,11 +392,11 @@ function init() {
                     return b.score - a.score
                 }
             })
-            // console.log('table', table)
         });
 
         return table
     }
+
     function renderScores() {
         const scores = JSON.parse(window.localStorage.getItem('scores'));
 
@@ -507,4 +506,3 @@ function init() {
     // showGame()
     showStats()
 }
-init()

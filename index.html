@@ -52,9 +52,28 @@
           Click to see how the score is calculated
         </button>
         <ul class="stats-info-text">
-          <li>Win: 1 point</li>
-          <li>Loss: -1 point</li>
-          <li>Goal: +/- 0.5 point</li>
+          <li>Win: <strong>1</strong> point</li>
+          <li>Loss: <strong>-1</strong> point</li>
+          <li>Goal: <strong>+/- 0.5</strong> point</li>
+          <li>
+            Rank bonus: The team with the lower average in rank ( position in
+            table ) will get the rank difference as percentage added to the
+            round score
+          </li>
+          <li>
+            Example: <br />
+            <i>Team 1</i> has an average rank ( position 2 and 4 ) of
+            <strong>3</strong> <br />
+            <i>Team 2</i> has an average rank ( position 10 and 12 ) of
+            <strong>11</strong> <br />
+            The bonus will be <strong>80%</strong>( (11-3) * 10) and the result
+            will get multiplied by 1.8 <br />
+            So if the result was a win with 10-8 to <i>Team 2</i>, the score is
+            calculated: <br />
+            Score = 1 + ( ( 10-8 ) * 0.5 ) = <strong>2</strong> <br />
+            Rank bonus = 1 + ( ( 11 - 3 ) / 10 ) = <strong>1.8</strong> <br />
+            Total score = Score * Rank bonus = <strong>3.6</strong>
+          </li>
         </ul>
       </div>
       <div>
