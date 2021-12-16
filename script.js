@@ -238,7 +238,6 @@ function init() {
     }
 
     function calcRoundScore(win, loose, goalDiff, playerScore = 0) {
-        console.log(playerScore)
         return win - loose + (goalDiff / 2)
     }
     function calcForm(score) {
@@ -257,14 +256,15 @@ function init() {
                 return 'freezing'
         }
     }
-    function calcPositionDiff(table, team1, team2) {
-        const player1Pos = table.indexOf(table.find(item => item.id == team1[0].id))
-        const player2Pos = table.indexOf(table.find(item => item.id == team1[1].id))
-        const player3Pos = table.indexOf(table.find(item => item.id == team2[0].id))
-        const player4Pos = table.indexOf(table.find(item => item.id == team2[1].id))
-        console.log(team2[1].player,
-            player4Pos)
-        return 0
+    function calcPositionPercentage(table, team1, team2) {
+        const player1Pos = Math.max(table.indexOf(table.find(item => item.id == team1[0].id)), 0) + 1
+        const player2Pos = Math.max(table.indexOf(table.find(item => item.id == team1[1].id)), 0) + 1
+        const player3Pos = Math.max(table.indexOf(table.find(item => item.id == team2[0].id)), 0) + 1
+        const player4Pos = Math.max(table.indexOf(table.find(item => item.id == team2[1].id)), 0) + 1
+        let team1PositionAverage = (player1Pos + player2Pos) / 2
+        let team2PositionAverage = (player3Pos + player4Pos) / 2
+        let diff = (team1PositionAverage - team2PositionAverage) * 0.1
+        return Math.max(diff, 0)
     }
 
     function calcTable() {
@@ -272,10 +272,11 @@ function init() {
         const scores = JSON.parse(window.localStorage.getItem('scores'));
         let table = [];
         scores.forEach(score => {
-            console.log('score', score)
             if (!score.timestamp) return
             const scoreDate = new Date(score.timestamp)
             if (scoreDate > oneMonthAgo) {
+                const team1Percentage = calcPositionPercentage(table, score.team1, score.team2)
+
                 score.team1.forEach(player => {
                     const didWin = score.score.team1 > score.score.team2;
                     const existingPlayer = table.find(entry => entry.id === player.id)
@@ -287,12 +288,11 @@ function init() {
                         existingPlayer.goalsFor += score.score.team1
                         existingPlayer.goalsAgainst += score.score.team2
                         existingPlayer.goalDifference += score.score.team1 - score.score.team2
-                        const positionDiff = calcPositionDiff(table, score.team1, score.team2)
-                        existingPlayer.score = (existingPlayer.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
-
-
-                        console.log({ table })
-
+                        existingPlayer.score = (
+                            existingPlayer.score +
+                            calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score) + 
+                            
+                        )
 
                         if (existingPlayer.form.scoreCount < 5) {
                             existingPlayer.form.score = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
@@ -301,13 +301,7 @@ function init() {
                                 existingPlayer.form.lastThree = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
                             }
                         }
-                        table.sort((a, b) => {
-                            if (b.score == a.score) {
-                                return b.form - a.form
-                            } else {
-                                return b.score - a.score
-                            }
-                        })
+
                     } else {
                         const win = didWin ? 1 : 0
                         const loose = !didWin ? 1 : 0
@@ -327,14 +321,6 @@ function init() {
                             }
                         }
                         table.push(playerEntry)
-                        table.sort((a, b) => {
-                            if (b.score == a.score) {
-                                return b.form - a.form
-                            } else {
-                                return b.score - a.score
-                            }
-                        })
-
                     }
 
                 });
@@ -350,7 +336,7 @@ function init() {
                         existingPlayer.goalsAgainst += score.score.team1
                         existingPlayer.goalDifference += score.score.team2 - score.score.team1
                         existingPlayer.score = (existingPlayer.score + calcRoundScore(win, loose, score.score.team2 - score.score.team1))
-                        const positionDiff = calcPositionDiff(table, score.team1, score.team2)
+                        // const positionDiff = calcPositionDiff(table, score.team1, score.team2)
 
                         if (existingPlayer.form.scoreCount < 5) {
                             existingPlayer.form.score = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team2 - score.score.team1))
@@ -359,13 +345,7 @@ function init() {
                                 existingPlayer.form.lastThree = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team2 - score.score.team1))
                             }
                         }
-                        table.sort((a, b) => {
-                            if (b.score == a.score) {
-                                return b.form - a.form
-                            } else {
-                                return b.score - a.score
-                            }
-                        })
+
                     } else {
                         const win = didWin ? 1 : 0
                         const loose = !didWin ? 1 : 0
@@ -385,16 +365,17 @@ function init() {
                             }
                         }
                         table.push(playerEntry)
-                        table.sort((a, b) => {
-                            if (b.score == a.score) {
-                                return b.form - a.form
-                            } else {
-                                return b.score - a.score
-                            }
-                        })
                     }
                 });
             }
+            table.sort((a, b) => {
+                if (b.score == a.score) {
+                    return b.form - a.form
+                } else {
+                    return b.score - a.score
+                }
+            })
+            // console.log('table', table)
         });
 
         return table
