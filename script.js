@@ -10,22 +10,22 @@ firebase.initializeApp(firebaseConfig);
 var firebaseDatabase = firebase.firestore();
 var scoresDoc = firebaseDatabase.collection("scores").doc("fVrdOakjOxeEX1lCQpPr");
 
-scoresDoc
-    .get()
-    .then((doc) => {
-        if (doc.exists) {
-            window.local
-            window.localStorage.setItem('scores', doc.data()['allscores'])
-            console.log("Fetched document!", doc.data());
-            init()
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    })
-    .catch((error) => {
-        console.log("Error getting document:", error);
-    });
+// scoresDoc
+//     .get()
+//     .then((doc) => {
+//         if (doc.exists) {
+//             window.local
+//             window.localStorage.setItem('scores', doc.data()['allscores'])
+//             console.log("Fetched document!", doc.data());
+//             init()
+//         } else {
+//             // doc.data() will be undefined in this case
+//             console.log("No such document!");
+//         }
+//     })
+//     .catch((error) => {
+//         console.log("Error getting document:", error);
+//     });
 
 function init() {
     const players = [
@@ -216,9 +216,9 @@ function init() {
         if (!window.localStorage.getItem('scores')) {
 
             window.localStorage.setItem('scores', JSON.stringify(scores))
-            scoresDoc.set({
-                allscores: JSON.stringify(scores)
-            })
+            // scoresDoc.set({
+            //     allscores: JSON.stringify(scores)
+            // })
         } else {
 
             const oldScores = JSON.parse(window.localStorage.getItem('scores'));
@@ -227,9 +227,9 @@ function init() {
                 ...oldScores
             ]
             window.localStorage.setItem('scores', JSON.stringify(newScores))
-            scoresDoc.set({
-                allscores: JSON.stringify(newScores)
-            })
+            // scoresDoc.set({
+            //     allscores: JSON.stringify(newScores)
+            // })
         }
 
 
@@ -237,7 +237,8 @@ function init() {
 
     }
 
-    function calcRoundScore(win, loose, goalDiff) {
+    function calcRoundScore(win, loose, goalDiff, playerScore = 0) {
+        console.log(playerScore)
         return win - loose + (goalDiff / 2)
     }
     function calcForm(score) {
@@ -256,12 +257,22 @@ function init() {
                 return 'freezing'
         }
     }
+    function calcPositionDiff(table, team1, team2) {
+        const player1Pos = table.indexOf(table.find(item => item.id == team1[0].id))
+        const player2Pos = table.indexOf(table.find(item => item.id == team1[1].id))
+        const player3Pos = table.indexOf(table.find(item => item.id == team2[0].id))
+        const player4Pos = table.indexOf(table.find(item => item.id == team2[1].id))
+        console.log(team2[1].player,
+            player4Pos)
+        return 0
+    }
 
     function calcTable() {
         if (!window.localStorage.getItem('scores')) return
         const scores = JSON.parse(window.localStorage.getItem('scores'));
         let table = [];
         scores.forEach(score => {
+            console.log('score', score)
             if (!score.timestamp) return
             const scoreDate = new Date(score.timestamp)
             if (scoreDate > oneMonthAgo) {
@@ -271,20 +282,32 @@ function init() {
                     if (existingPlayer) {
                         const win = didWin ? 1 : 0
                         const loose = !didWin ? 1 : 0
-                        existingPlayer.wins += win,
-                            existingPlayer.losses += loose
+                        existingPlayer.wins += win
+                        existingPlayer.losses += loose
                         existingPlayer.goalsFor += score.score.team1
                         existingPlayer.goalsAgainst += score.score.team2
                         existingPlayer.goalDifference += score.score.team1 - score.score.team2
-                        existingPlayer.score = (existingPlayer.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2))
+                        const positionDiff = calcPositionDiff(table, score.team1, score.team2)
+                        existingPlayer.score = (existingPlayer.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
+
+
+                        console.log({ table })
+
 
                         if (existingPlayer.form.scoreCount < 5) {
-                            existingPlayer.form.score = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2))
+                            existingPlayer.form.score = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
                             existingPlayer.form.scoreCount = existingPlayer.form.scoreCount + 1
                             if (existingPlayer.form.scoreCount < 3) {
-                                existingPlayer.form.lastThree = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2))
+                                existingPlayer.form.lastThree = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
                             }
                         }
+                        table.sort((a, b) => {
+                            if (b.score == a.score) {
+                                return b.form - a.form
+                            } else {
+                                return b.score - a.score
+                            }
+                        })
                     } else {
                         const win = didWin ? 1 : 0
                         const loose = !didWin ? 1 : 0
@@ -304,6 +327,14 @@ function init() {
                             }
                         }
                         table.push(playerEntry)
+                        table.sort((a, b) => {
+                            if (b.score == a.score) {
+                                return b.form - a.form
+                            } else {
+                                return b.score - a.score
+                            }
+                        })
+
                     }
 
                 });
@@ -319,6 +350,8 @@ function init() {
                         existingPlayer.goalsAgainst += score.score.team1
                         existingPlayer.goalDifference += score.score.team2 - score.score.team1
                         existingPlayer.score = (existingPlayer.score + calcRoundScore(win, loose, score.score.team2 - score.score.team1))
+                        const positionDiff = calcPositionDiff(table, score.team1, score.team2)
+
                         if (existingPlayer.form.scoreCount < 5) {
                             existingPlayer.form.score = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team2 - score.score.team1))
                             existingPlayer.form.scoreCount = existingPlayer.form.scoreCount + 1
@@ -326,6 +359,13 @@ function init() {
                                 existingPlayer.form.lastThree = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team2 - score.score.team1))
                             }
                         }
+                        table.sort((a, b) => {
+                            if (b.score == a.score) {
+                                return b.form - a.form
+                            } else {
+                                return b.score - a.score
+                            }
+                        })
                     } else {
                         const win = didWin ? 1 : 0
                         const loose = !didWin ? 1 : 0
@@ -345,10 +385,18 @@ function init() {
                             }
                         }
                         table.push(playerEntry)
+                        table.sort((a, b) => {
+                            if (b.score == a.score) {
+                                return b.form - a.form
+                            } else {
+                                return b.score - a.score
+                            }
+                        })
                     }
                 });
             }
         });
+
         return table
     }
     function renderScores() {
@@ -460,3 +508,4 @@ function init() {
     // showGame()
     showStats()
 }
+init()
