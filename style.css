@@ -99,11 +99,28 @@ button {
   display: none;
   align-items: flex-start;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
-.stats-container div {
+.stats-container div:not(.stats-info) {
   flex: 0 0 48%;
 }
-
+.stats-info {
+  flex: 1 0 100%;
+  text-align: center;
+}
+.stats-info-button {
+  margin: 0 auto;
+  display: block;
+  color: white;
+  background: #04aa6d;
+}
+.stats-info-text {
+  text-align: left;
+  display: none;
+}
+.stats-info-text.is-visible {
+  display: inline-block;
+}
 h2 {
   text-align: center;
 }

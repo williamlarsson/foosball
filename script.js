@@ -105,7 +105,11 @@ function init() {
         team1Score: document.querySelector('#team1Score'),
         team2Score: document.querySelector('#team2Score'),
         buttons: {
-            randomizeTeams: document.querySelector('.randomizeTeams')
+            randomizeTeams: document.querySelector('.randomizeTeams'),
+        },
+        statsInfo: {
+            statsInfoButton: document.querySelector('.stats-info-button'),
+            statsInfoText: document.querySelector('.stats-info-text'),
         },
         form: document.querySelector('form'),
         tabs: {
@@ -127,6 +131,9 @@ function init() {
         DOM.tabs.stats.addEventListener('click', onTabClick);
         DOM.buttons.randomizeTeams.addEventListener('click', randomizeTeams)
         DOM.form.addEventListener('submit', registerGame);
+        DOM.statsInfo.statsInfoButton.addEventListener('click', () => {
+            DOM.statsInfo.statsInfoText.classList.add('is-visible')
+        });
     }
 
     function onTabClick(e) {
@@ -241,7 +248,7 @@ function init() {
 
     }
 
-    function calcRoundScore(win, loose, goalDiff) {
+    function calcRoundScore(win, loose, goalDiff, playerScore = 0) {
         return win - loose + (goalDiff / 2)
     }
     function calcForm(score) {
@@ -260,38 +267,59 @@ function init() {
                 return 'freezing'
         }
     }
+    function calcPositionPercentage(table, team1, team2) {
+        const player1Pos = Math.max(table.indexOf(table.find(item => item.id == team1[0].id)), 0) + 1
+        const player2Pos = Math.max(table.indexOf(table.find(item => item.id == team1[1].id)), 0) + 1
+        const player3Pos = Math.max(table.indexOf(table.find(item => item.id == team2[0].id)), 0) + 1
+        const player4Pos = Math.max(table.indexOf(table.find(item => item.id == team2[1].id)), 0) + 1
+        let team1PositionAverage = (player1Pos + player2Pos) / 2
+        let team2PositionAverage = (player3Pos + player4Pos) / 2
+        let diff = (team1PositionAverage - team2PositionAverage) * 0.1
+        console.log('Math.max(diff, 0)', Math.max(diff, 0))
+        return Math.max(diff, 0)
+    }
 
     function calcTable() {
         if (!window.localStorage.getItem('scores')) return
         const scores = JSON.parse(window.localStorage.getItem('scores'));
+        scores.reverse()
         let table = [];
         scores.forEach(score => {
             if (!score.timestamp) return
             const scoreDate = new Date(score.timestamp)
             if (scoreDate > oneMonthAgo) {
+                const team1Percentage = calcPositionPercentage(table, score.team1, score.team2)
+                const team2Percentage = calcPositionPercentage(table, score.team2, score.team1)
+
                 score.team1.forEach(player => {
                     const didWin = score.score.team1 > score.score.team2;
                     const existingPlayer = table.find(entry => entry.id === player.id)
                     if (existingPlayer) {
                         const win = didWin ? 1 : 0
                         const loose = !didWin ? 1 : 0
-                        existingPlayer.wins += win,
-                            existingPlayer.losses += loose
+                        const roundScore = calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score)
+                        const rankedScore = parseFloat(roundScore + (Math.abs(roundScore) * team1Percentage))
+
+                        existingPlayer.wins += win
+                        existingPlayer.losses += loose
                         existingPlayer.goalsFor += score.score.team1
                         existingPlayer.goalsAgainst += score.score.team2
                         existingPlayer.goalDifference += score.score.team1 - score.score.team2
-                        existingPlayer.score = (existingPlayer.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2))
+                        existingPlayer.score = existingPlayer.score + rankedScore
 
                         if (existingPlayer.form.scoreCount < 5) {
-                            existingPlayer.form.score = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2))
+                            existingPlayer.form.score = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
                             existingPlayer.form.scoreCount = existingPlayer.form.scoreCount + 1
                             if (existingPlayer.form.scoreCount < 3) {
-                                existingPlayer.form.lastThree = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2))
+                                existingPlayer.form.lastThree = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
                             }
                         }
+
                     } else {
                         const win = didWin ? 1 : 0
                         const loose = !didWin ? 1 : 0
+                        const roundScore = calcRoundScore(win, loose, score.score.team1 - score.score.team2)
+                        const rankedScore = parseFloat(roundScore + (Math.abs(roundScore) * team1Percentage))
                         const playerEntry = {
                             name: player.player,
                             id: player.id,
@@ -300,10 +328,10 @@ function init() {
                             goalsFor: score.score.team1,
                             goalsAgainst: score.score.team2,
                             goalDifference: score.score.team1 - score.score.team2,
-                            score: calcRoundScore(win, loose, score.score.team1 - score.score.team2),
+                            score: rankedScore,
                             form: {
-                                score: calcRoundScore(win, loose, score.score.team1 - score.score.team2),
-                                lastThree: calcRoundScore(win, loose, score.score.team1 - score.score.team2),
+                                score: rankedScore,
+                                lastThree: rankedScore,
                                 scoreCount: 1
                             }
                         }
@@ -317,22 +345,28 @@ function init() {
                     if (existingPlayer) {
                         const win = didWin ? 1 : 0
                         const loose = !didWin ? 1 : 0
+                        const roundScore = parseFloat(calcRoundScore(win, loose, score.score.team2 - score.score.team1, existingPlayer.score))
+                        const rankedScore = roundScore + (Math.abs(roundScore) * team2Percentage)
                         existingPlayer.wins += win
                         existingPlayer.losses += loose
                         existingPlayer.goalsFor += score.score.team2
                         existingPlayer.goalsAgainst += score.score.team1
                         existingPlayer.goalDifference += score.score.team2 - score.score.team1
-                        existingPlayer.score = (existingPlayer.score + calcRoundScore(win, loose, score.score.team2 - score.score.team1))
+                        existingPlayer.score = existingPlayer.score + rankedScore
+
                         if (existingPlayer.form.scoreCount < 5) {
-                            existingPlayer.form.score = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team2 - score.score.team1))
+                            existingPlayer.form.score = (existingPlayer.form.score + rankedScore)
                             existingPlayer.form.scoreCount = existingPlayer.form.scoreCount + 1
                             if (existingPlayer.form.scoreCount < 3) {
-                                existingPlayer.form.lastThree = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team2 - score.score.team1))
+                                existingPlayer.form.lastThree = (existingPlayer.form.score + rankedScore)
                             }
                         }
+
                     } else {
                         const win = didWin ? 1 : 0
                         const loose = !didWin ? 1 : 0
+                        const roundScore = calcRoundScore(win, loose, score.score.team2 - score.score.team1)
+                        const rankedScore = parseFloat(roundScore + (Math.abs(roundScore) * team2Percentage))
                         const playerEntry = {
                             name: player.player,
                             id: player.id,
@@ -341,10 +375,10 @@ function init() {
                             goalsFor: score.score.team2,
                             goalsAgainst: score.score.team1,
                             goalDifference: score.score.team2 - score.score.team1,
-                            score: calcRoundScore(win, loose, score.score.team2 - score.score.team1),
+                            score: rankedScore,
                             form: {
-                                score: calcRoundScore(win, loose, score.score.team2 - score.score.team1),
-                                lastThree: calcRoundScore(win, loose, score.score.team2 - score.score.team1),
+                                score: rankedScore,
+                                lastThree: rankedScore,
                                 scoreCount: 1
                             }
                         }
@@ -352,7 +386,16 @@ function init() {
                     }
                 });
             }
+            table.sort((a, b) => {
+                if (b.score == a.score) {
+                    return b.form - a.form
+                } else {
+                    return b.score - a.score
+                }
+            })
+            // console.log('table', table)
         });
+
         return table
     }
     function renderScores() {
@@ -432,9 +475,9 @@ function init() {
                         <td>${player.wins}</td>
                         <td>${player.losses}</td>
                         <td>${player.goalDifference}</td>
-                        <td><span class="form ${calcForm(player.form.score)}" ></span></td>
-                        <td >${player.form.score}</td>
-                        <td class="bold">${player.score}</td>
+                        <td><span class="form ${calcForm(player.form.score.toFixed(2))}" ></span></td>
+                        <td >${player.form.score.toFixed(2)}</td>
+                        <td class="bold">${player.score.toFixed(2)}</td>
                     </tr>
                 `
                 DOM.standingsContainer.insertAdjacentHTML('beforeend', markup);
@@ -448,9 +491,9 @@ function init() {
                         <td>${player.wins}</td>
                         <td>${player.losses}</td>
                         <td>${player.goalDifference}</td>
-                        <td><span class="form ${calcForm(player.form.score)}" ></span></td>
-                        <td >${player.form.score}</td>
-                        <td class="bold">${player.score}</td>
+                        <td><span class="form ${calcForm(player.form.score.toFixed(2))}" ></span></td>
+                        <td >${player.form.score.toFixed(2)}</td>
+                        <td class="bold">${player.score.toFixed(2)}</td>
                     </tr>
                 `
                 DOM.standingsContainer.insertAdjacentHTML('beforeend', markup);
@@ -464,3 +507,4 @@ function init() {
     // showGame()
     showStats()
 }
+init()
