@@ -187,10 +187,6 @@ function init() {
         }
     }
 
-    function calcRank(wins, losses, goalDifference) {
-        return (wins - losses) + (goalDifference * 0.5)
-    }
-
     function registerGame(e) {
         e.preventDefault();
         const team1Score = parseInt(DOM.team1Score.value);
@@ -251,6 +247,7 @@ function init() {
     function calcRoundScore(win, loose, goalDiff, playerScore = 0) {
         return win - loose + (goalDiff / 2)
     }
+
     function calcForm(score) {
         switch (true) {
             case score > 6:
@@ -267,6 +264,7 @@ function init() {
                 return 'freezing'
         }
     }
+
     function calcPositionPercentage(table, team1, team2) {
         const player1Pos = Math.max(table.indexOf(table.find(item => item.id == team1[0].id)), 0) + 1
         const player2Pos = Math.max(table.indexOf(table.find(item => item.id == team1[1].id)), 0) + 1
@@ -287,15 +285,16 @@ function init() {
             if (!score.timestamp) return
             const scoreDate = new Date(score.timestamp)
             if (scoreDate > oneMonthAgo) {
-                const team1Percentage = calcPositionPercentage(table, score.team1, score.team2)
-                const team2Percentage = calcPositionPercentage(table, score.team2, score.team1)
+                const didTeam1Win = score.score.team1 > score.score.team2;
+                const didTeam2Win = score.score.team1 > score.score.team2;
+                const team1Percentage = didTeam1Win ? calcPositionPercentage(table, score.team1, score.team2) : calcPositionPercentage(table, score.team1, score.team2) / 2
+                const team2Percentage = didTeam2Win ? calcPositionPercentage(table, score.team2, score.team1) : calcPositionPercentage(table, score.team2, score.team1) / 2
 
                 score.team1.forEach(player => {
-                    const didWin = score.score.team1 > score.score.team2;
                     const existingPlayer = table.find(entry => entry.id === player.id)
                     if (existingPlayer) {
-                        const win = didWin ? 1 : 0
-                        const loose = !didWin ? 1 : 0
+                        const win = didTeam1Win ? 1 : 0
+                        const loose = !didTeam1Win ? 1 : 0
                         const roundScore = calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score)
                         const rankedScore = parseFloat(roundScore + (Math.abs(roundScore) * team1Percentage))
 
@@ -315,8 +314,8 @@ function init() {
                         }
 
                     } else {
-                        const win = didWin ? 1 : 0
-                        const loose = !didWin ? 1 : 0
+                        const win = didTeam1Win ? 1 : 0
+                        const loose = !didTeam1Win ? 1 : 0
                         const roundScore = calcRoundScore(win, loose, score.score.team1 - score.score.team2)
                         const rankedScore = parseFloat(roundScore + (Math.abs(roundScore) * team1Percentage))
                         const playerEntry = {
@@ -339,11 +338,10 @@ function init() {
 
                 });
                 score.team2.forEach(player => {
-                    const didWin = score.score.team2 > score.score.team1;
                     const existingPlayer = table.find(entry => entry.id === player.id)
                     if (existingPlayer) {
-                        const win = didWin ? 1 : 0
-                        const loose = !didWin ? 1 : 0
+                        const win = didTeam2Win ? 1 : 0
+                        const loose = !didTeam2Win ? 1 : 0
                         const roundScore = parseFloat(calcRoundScore(win, loose, score.score.team2 - score.score.team1, existingPlayer.score))
                         const rankedScore = roundScore + (Math.abs(roundScore) * team2Percentage)
                         existingPlayer.wins += win
@@ -362,8 +360,8 @@ function init() {
                         }
 
                     } else {
-                        const win = didWin ? 1 : 0
-                        const loose = !didWin ? 1 : 0
+                        const win = didTeam2Win ? 1 : 0
+                        const loose = !didTeam2Win ? 1 : 0
                         const roundScore = calcRoundScore(win, loose, score.score.team2 - score.score.team1)
                         const rankedScore = parseFloat(roundScore + (Math.abs(roundScore) * team2Percentage))
                         const playerEntry = {
@@ -436,10 +434,11 @@ function init() {
         if (window.innerWidth > 600) {
             DOM.standingsContainer.innerHTML = `
                 <tr>
+                    <th>Position</th>
                     <th>Player</th>
                     <th>Wins</th>
                     <th>Losses</th>
-                    <th>Goal difference</th>
+                    <th>Goal +/-</th>
                     <th>Form</th>
                     <th>Last 5</th>
                     <th>Score</th>
@@ -452,7 +451,7 @@ function init() {
                     <th>Player</th>
                     <th>Wins</th>
                     <th>Losses</th>
-                    <th>Goal difference</th>
+                    <th>Goal +/-</th>
                     <th>Form</th>
                     <th>Last 5</th>
                     <th>Score</th>
@@ -468,8 +467,10 @@ function init() {
         })
         if (window.innerWidth > 600) {
             sortedStandings.forEach(player => {
+                const position = sortedStandings.indexOf(player) + 1
                 const markup = `
                     <tr>
+                        <td>${position}</td>
                         <td>${player.name}</td>
                         <td>${player.wins}</td>
                         <td>${player.losses}</td>
