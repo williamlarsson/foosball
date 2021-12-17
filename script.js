@@ -282,7 +282,7 @@ function init() {
             const scoreDate = new Date(score.timestamp)
             if (scoreDate > oneMonthAgo) {
                 const didTeam1Win = score.score.team1 > score.score.team2;
-                const didTeam2Win = score.score.team1 > score.score.team2;
+                const didTeam2Win = score.score.team1 < score.score.team2;
                 const team1Percentage = didTeam1Win ? calcPositionPercentage(table, score.team1, score.team2) : calcPositionPercentage(table, score.team1, score.team2) / 2
                 const team2Percentage = didTeam2Win ? calcPositionPercentage(table, score.team2, score.team1) : calcPositionPercentage(table, score.team2, score.team1) / 2
 
