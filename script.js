@@ -146,7 +146,6 @@ function init() {
     }
 
     function showGame() {
-
         document.body.classList.add('game-is-active');
         document.body.classList.remove('stats-is-active');
         DOM.tabs.game.classList.add('active')
@@ -155,7 +154,6 @@ function init() {
     }
 
     function showStats() {
-
         document.body.classList.add('stats-is-active');
         document.body.classList.remove('game-is-active');
         DOM.tabs.stats.classList.add('active')
@@ -165,7 +163,6 @@ function init() {
     }
 
     function renderOptions() {
-        const sortedPlayers = players.sort((a, b) => a.name > b.name ? 1 : -1)
         const optionsMarkup = players.map(player => {
             return `
             <option value="${player.id}">${player.name}</option>
@@ -177,7 +174,6 @@ function init() {
     }
 
     function randomizeTeams() {
-
         let playerIds = [...Object.keys(players).map(i => players[i].id)]
         for (let index = 0; index < DOM.playerSelectors.length; index++) {
             const randomIndex = playerIds.splice(Math.floor(Math.random() * playerIds.length), 1)[0]
@@ -397,7 +393,6 @@ function init() {
 
     function renderScores() {
         const scores = JSON.parse(window.localStorage.getItem('scores'));
-
         if (!scores) return
         DOM.scoresContainer.innerHTML = `
             <tr>
@@ -428,7 +423,6 @@ function init() {
     }
 
     function renderStandings() {
-
         const standings = calcTable();
         if (!standings) return;
         if (window.innerWidth > 600) {
@@ -504,6 +498,5 @@ function init() {
 
     renderOptions();
     bindEvents();
-    // showGame()
     showStats()
 }
