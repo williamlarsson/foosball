@@ -7,6 +7,7 @@ body {
   width: 100vw;
   margin: 0;
   overflow-x: hidden;
+  --green: #04aa6d;
 }
 
 body {
@@ -90,7 +91,7 @@ button {
 }
 .button:focus,
 .button:active {
-  outline: 2px solid #04aa6d;
+  outline: 2px solid var(--green);
 }
 
 .stats-container {
@@ -217,3 +218,19 @@ table th {
     transform-origin: left top;
   }
 }
+.score-row {
+  position: relative;
+}
+.score-controls {
+  position: absolute;  
+  display: none;
+}
+.score-controls button {
+  padding: 2px;
+  border-radius: 5px;
+  margin: 2px;
+  background-color: var(--green);
+}
+.score-row:hover .score-controls {
+  display: flex;
+} 

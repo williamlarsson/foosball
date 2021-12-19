@@ -135,7 +135,6 @@ function init() {
             DOM.statsInfo.statsInfoText.classList.toggle('is-visible')
         });
     }
-
     function onTabClick(e) {
         const tab = e.target.getAttribute('data-tab');
         if (tab == 'game') {
@@ -410,11 +409,16 @@ function init() {
 
                 const winner = game.score.team1 > game.score.team2 ? 1 : 2;
                 const markup = `
-                    <tr>
+                    <tr class="score-row">
                         <td class="${winner == 1 ? 'bold' : ''}">${game.team1[0].player} - ${game.team1[1].player}</td>
                         <td class="${winner == 2 ? 'bold' : ''}">${game.team2[0].player} - ${game.team2[1].player}</td>
                         <td>${scoreDate.getDate()}/${scoreDate.getMonth() + 1}</td>
-                        <td>${game.score.team1} - ${game.score.team2}</td>
+                        <td>${game.score.team1} - ${game.score.team2}
+                        </td>
+                        <div class="score-controls">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </div>
                     </tr>
                 `
                 DOM.scoresContainer.insertAdjacentHTML('beforeend', markup);
@@ -497,6 +501,6 @@ function init() {
     }
 
     renderOptions();
-    bindEvents();
     showStats()
+    bindEvents();
 }
