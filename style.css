@@ -30,7 +30,6 @@ body {
 }
 .tab.active {
   border-bottom: 2px solid black;
-  background-color: ;
 }
 .game-container {
   padding: 1rem;
