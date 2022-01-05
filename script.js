@@ -82,7 +82,7 @@ function init() {
             id: 13,
         },
         {
-            name: 'Jakob',
+            name: 'Jacob',
             id: 14,
         },
         {
@@ -192,7 +192,7 @@ function init() {
         const team1Score = parseInt(DOM.team1Score.value);
         const team2Score = parseInt(DOM.team2Score.value);
         DOM.team1Score.value = null
-        DOM.team1Score.value = null
+        DOM.team2Score.value = null
         const scores = [
             {
                 timestamp: new Date(),
