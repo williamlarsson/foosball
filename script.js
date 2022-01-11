@@ -304,14 +304,7 @@ function init() {
                         existingPlayer.goalsAgainst += score.score.team2
                         existingPlayer.goalDifference += score.score.team1 - score.score.team2
                         existingPlayer.score = existingPlayer.score + rankedScore
-
-                        if (existingPlayer.form.scoreCount < 5) {
-                            existingPlayer.form.score = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
-                            existingPlayer.form.scoreCount = existingPlayer.form.scoreCount + 1
-                            if (existingPlayer.form.scoreCount < 3) {
-                                existingPlayer.form.lastThree = (existingPlayer.form.score + calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score))
-                            }
-                        }
+                        existingPlayer.scoreHistory.push(rankedScore)
 
                     } else {
                         const win = didTeam1Win ? 1 : 0
@@ -327,11 +320,7 @@ function init() {
                             goalsAgainst: score.score.team2,
                             goalDifference: score.score.team1 - score.score.team2,
                             score: rankedScore,
-                            form: {
-                                score: rankedScore,
-                                lastThree: rankedScore,
-                                scoreCount: 1
-                            }
+                            scoreHistory: [rankedScore]
                         }
                         table.push(playerEntry)
                     }
@@ -350,14 +339,7 @@ function init() {
                         existingPlayer.goalsAgainst += score.score.team1
                         existingPlayer.goalDifference += score.score.team2 - score.score.team1
                         existingPlayer.score = existingPlayer.score + rankedScore
-
-                        if (existingPlayer.form.scoreCount < 5) {
-                            existingPlayer.form.score = (existingPlayer.form.score + rankedScore)
-                            existingPlayer.form.scoreCount = existingPlayer.form.scoreCount + 1
-                            if (existingPlayer.form.scoreCount < 3) {
-                                existingPlayer.form.lastThree = (existingPlayer.form.score + rankedScore)
-                            }
-                        }
+                        existingPlayer.scoreHistory.push(rankedScore)
 
                     } else {
                         const win = didTeam2Win ? 1 : 0
@@ -373,11 +355,7 @@ function init() {
                             goalsAgainst: score.score.team1,
                             goalDifference: score.score.team2 - score.score.team1,
                             score: rankedScore,
-                            form: {
-                                score: rankedScore,
-                                lastThree: rankedScore,
-                                scoreCount: 1
-                            }
+                            scoreHistory: [rankedScore]
                         }
                         table.push(playerEntry)
                     }
@@ -465,6 +443,7 @@ function init() {
         })
         if (window.innerWidth > 600) {
             sortedStandings.forEach(player => {
+                const lastFive = player.scoreHistory.reverse().filter((score, index) => index < 5 && score).reduce((a, b) => a + b)
                 const position = sortedStandings.indexOf(player) + 1
                 const markup = `
                     <tr>
@@ -473,8 +452,8 @@ function init() {
                         <td>${player.wins}</td>
                         <td>${player.losses}</td>
                         <td>${player.goalDifference}</td>
-                        <td><span class="form ${calcForm(player.form.score.toFixed(2))}" ></span></td>
-                        <td >${player.form.score.toFixed(2)}</td>
+                        <td><span class="form ${calcForm(lastFive.toFixed(2))}" ></span></td>
+                        <td >${lastFive.toFixed(2)}</td>
                         <td class="bold">${player.score.toFixed(2)}</td>
                     </tr>
                 `
@@ -483,14 +462,16 @@ function init() {
 
         } else {
             sortedStandings.forEach(player => {
+                const lastFive = player.scoreHistory.reverse().filter((score, index) => index < 5 && score).reduce((a, b) => a + b)
+
                 const markup = `
                     <tr>
                         <td>${player.name}</td>
                         <td>${player.wins}</td>
                         <td>${player.losses}</td>
                         <td>${player.goalDifference}</td>
-                        <td><span class="form ${calcForm(player.form.score.toFixed(2))}" ></span></td>
-                        <td >${player.form.score.toFixed(2)}</td>
+                        <td><span class="form ${calcForm(lastFive.toFixed(2))}" ></span></td>
+                        <td >${lastFive.toFixed(2)}</td>
                         <td class="bold">${player.score.toFixed(2)}</td>
                     </tr>
                 `
