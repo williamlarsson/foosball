@@ -101,6 +101,10 @@ function init() {
             name: 'Sofie',
             id: 18,
         },
+        {
+            name: 'Xavier',
+            id: 19,
+        },
     ]
     const now = new Date();
     const oneMonthAgo = new Date(new Date(now).setDate(now.getDate() - 29));
@@ -167,7 +171,7 @@ function init() {
     }
 
     function renderOptions() {
-        const optionsMarkup = players.map(player => {
+        const optionsMarkup = players.sort((a, b) => a.name > b.name ? 1 : -1).map(player => {
             return `
             <option value="${player.id}">${player.name}</option>
             `
