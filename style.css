@@ -59,7 +59,29 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
+.foosball-table__background { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: url(./foosball.jfif) center / cover no-repeat;
+  z-index: -1;
+}
+.foosball-table input {
+  width: 8rem;
+  padding-right: 0.2rem;
+  border-width: 3px;
+  box-shadow: 0 0 20px -3px black;
+}
+.foosball-table button {
+  width: 8rem;
+  border-width: 3px;
+  box-shadow: 0 0 20px -3px black;
+}
+
 input,
 select {
   margin: 1rem 0;
@@ -86,6 +108,8 @@ button {
 }
 .button {
   border: 2px solid black;
+  background: white;
+  width: 8rem;
 }
 .button:focus,
 .button:active {
