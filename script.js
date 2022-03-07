@@ -19,7 +19,6 @@ scoresDoc
             console.log("Fetched document!", doc.data());
             init()
         } else {
-            // doc.data() will be undefined in this case
             console.log("No such document!");
         }
     })
@@ -317,7 +316,9 @@ function init() {
                         existingPlayer.goalDifference += score.score.team1 - score.score.team2
                         existingPlayer.score = existingPlayer.score + rankedScore
                         existingPlayer.scoreHistory.push(rankedScore)
-
+                        if (score.score.team1 === 0) {
+                            existingPlayer.hasBeenEgged = true
+                        }
                     } else {
                         const win = didTeam1Win ? 1 : 0
                         const loose = !didTeam1Win ? 1 : 0
@@ -333,6 +334,9 @@ function init() {
                             goalDifference: score.score.team1 - score.score.team2,
                             score: rankedScore,
                             scoreHistory: [rankedScore]
+                        }
+                        if (score.score.team1 === 0) {
+                            playerEntry.hasBeenEgged = true
                         }
                         table.push(playerEntry)
                     }
@@ -352,7 +356,9 @@ function init() {
                         existingPlayer.goalDifference += score.score.team2 - score.score.team1
                         existingPlayer.score = existingPlayer.score + rankedScore
                         existingPlayer.scoreHistory.push(rankedScore)
-
+                        if (score.score.team2 === 0) {
+                            existingPlayer.hasBeenEgged = true
+                        }
                     } else {
                         const win = didTeam2Win ? 1 : 0
                         const loose = !didTeam2Win ? 1 : 0
@@ -368,6 +374,9 @@ function init() {
                             goalDifference: score.score.team2 - score.score.team1,
                             score: rankedScore,
                             scoreHistory: [rankedScore]
+                        }
+                        if (score.score.team2 === 0) {
+                            playerEntry.hasBeenEgged = true
                         }
                         table.push(playerEntry)
                     }
@@ -405,8 +414,8 @@ function init() {
                 const winner = game.score.team1 > game.score.team2 ? 1 : 2;
                 const markup = `
                     <tr>
-                        <td class="${winner == 1 ? 'bold' : ''}">${game.team1[0].player} - ${game.team1[1].player}</td>
-                        <td class="${winner == 2 ? 'bold' : ''}">${game.team2[0].player} - ${game.team2[1].player}</td>
+                        <td class="${game.score.team1 === 0 && 'egg'} ${winner == 1 ? 'bold' : ''}">${game.team1[0].player} - ${game.team1[1].player}</td>
+                        <td class="${game.score.team2 === 0 && 'egg'} ${winner == 2 ? 'bold' : ''}">${game.team2[0].player} - ${game.team2[1].player}</td>
                         <td>${scoreDate.getDate()}/${scoreDate.getMonth() + 1}</td>
                         <td>${game.score.team1} - ${game.score.team2}</td>
                     </tr>
@@ -455,12 +464,13 @@ function init() {
         })
         if (window.innerWidth > 600) {
             sortedStandings.forEach(player => {
+
                 const lastFive = player.scoreHistory.reverse().filter((score, index) => index < 5 && score).reduce((a, b) => a + b)
                 const position = sortedStandings.indexOf(player) + 1
                 const markup = `
                     <tr>
                         <td>${position}</td>
-                        <td>${player.name}</td>
+                        <td class="${player.hasBeenEgged && 'egg'}">${player.name}</td>
                         <td>${player.wins}</td>
                         <td>${player.losses}</td>
                         <td>${player.goalDifference}</td>
