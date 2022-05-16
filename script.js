@@ -112,6 +112,10 @@ function init() {
             name: 'Mussa',
             id: 21,
         },
+        {
+            name: 'Mikolaj',
+            id: 22,
+        },
     ]
     const now = new Date();
     const oneMonthAgo = new Date(new Date(now).setDate(now.getDate() - 29));
@@ -256,7 +260,8 @@ function init() {
     }
 
     function calcRoundScore(win, loose, goalDiff, playerScore = 0) {
-        return win - loose + (goalDiff / 2)
+        return ( loose * 2 ) - win  + (goalDiff / 2)
+        // return ( win * 1 ) - loose + (goalDiff / 2)
     }
 
     function calcForm(score) {
@@ -283,7 +288,7 @@ function init() {
         const player4Pos = Math.max(table.indexOf(table.find(item => item.id == team2[1].id)), 0) + 1
         let team1PositionAverage = (player1Pos + player2Pos) / 2
         let team2PositionAverage = (player3Pos + player4Pos) / 2
-        let diff = (team1PositionAverage - team2PositionAverage) * 0.1
+        let diff = (team1PositionAverage - team2PositionAverage) * 0.5
         return Math.max(diff, 0)
     }
 
