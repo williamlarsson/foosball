@@ -61,7 +61,7 @@ function init() {
             id: 8,
         },
         {
-            name: 'Michael',
+            name: 'Michael C K',
             id: 9,
         },
         {
@@ -81,7 +81,7 @@ function init() {
             id: 13,
         },
         {
-            name: 'Jacob',
+            name: 'Jacob K H',
             id: 14,
         },
         {
@@ -119,6 +119,14 @@ function init() {
         {
             name: 'Tonny',
             id: 23,
+        },
+        {
+            name: 'Sofus',
+            id: 24,
+        },
+        {
+            name: 'Jacob H',
+            id: 24,
         },
     ]
     const now = new Date();
