@@ -61,7 +61,7 @@ h1 {
   justify-content: center;
   position: relative;
 }
-.foosball-table__background { 
+.foosball-table__background {
   position: absolute;
   top: 0;
   left: 0;
@@ -93,7 +93,7 @@ select {
 }
 select {
   text-align: left;
-  width: 14rem;
+  width: 18rem;
 }
 select:focus,
 select:active {
@@ -225,13 +225,13 @@ table th {
   position: relative;
 }
 .egg:after {
-  content: '';
+  content: "";
   height: 16px;
   width: 16px;
   position: absolute;
   top: calc(50% - 8px);
   right: 16px;
-  background: url('egg.png') no-repeat center / contain;
+  background: url("egg.png") no-repeat center / contain;
 }
 @media (max-width: 600px) {
   h1 {
@@ -255,6 +255,6 @@ table th {
     padding: 0rem;
   }
   .stats-container .standings {
-      transform-origin: left top;
+    transform-origin: left top;
   }
 }
