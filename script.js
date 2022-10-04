@@ -121,10 +121,6 @@ function init() {
             id: 23,
         },
         {
-            name: 'Sofus',
-            id: 24,
-        },
-        {
             name: 'Jacob H',
             id: 24,
         },
@@ -135,6 +131,10 @@ function init() {
         {
             name: 'Anders Hartmann',
             id: 26,
+        },
+        {
+            name: 'Sofus',
+            id: 27,
         },
     ]
     const now = new Date();
