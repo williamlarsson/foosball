@@ -13,8 +13,9 @@
       <button tabindex="-1" class="tab stats" data-tab="stats">Stats</button>
     </div>
     <div class="game-container game-container">
-      <button class="button randomizeTeams">Randomize Teams</button>
-      <form>
+      <div class="select-player-list"></div>
+      <form class="">
+        <button class="button randomizeTeams">Randomize Teams</button>
         <h1 id="team1">
           <select tabindex="1" id="player1" required></select>
           <select tabindex="1" id="player2" required></select>
@@ -81,7 +82,7 @@
         <h2>Scores</h2>
         <table class="scores"></table>
       </div>
-        <div class="standings-container">
+      <div class="standings-container">
         <h2>Standings</h2>
         <table class="standings"></table>
       </div>

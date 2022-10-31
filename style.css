@@ -82,7 +82,16 @@ h1 {
   box-shadow: 0 0 20px -3px black;
 }
 
-input,
+input[type="text"],
+select {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 2px solid black;
+  width: 10rem;
+  font-size: 2rem;
+  text-align: center;
+}
+input[type="text"],
 select {
   margin: 1rem 0;
   padding: 1rem;
@@ -179,6 +188,9 @@ table th {
   text-align: left;
   background-color: #04aa6d;
   color: white;
+}
+form {
+  text-align: center;
 }
 .form {
   display: flex;

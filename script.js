@@ -137,8 +137,9 @@ function init() {
             id: 27,
         },
     ]
+    var selectedPlayers = []
     const now = new Date();
-    const oneMonthAgo = new Date(new Date(now).setDate(now.getDate() - 29));
+    const oneMonthAgo = new Date(new Date(now).setDate(now.getDate() - 929));
 
     const DOM = {
         team1Score: document.querySelector('#team1Score'),
@@ -157,6 +158,7 @@ function init() {
         },
         scoresContainer: document.querySelector('.scores'),
         standingsContainer: document.querySelector('.standings'),
+        selectPlayerList: document.querySelector('.select-player-list'),
         playerSelectors: [
             document.querySelector('#player1'),
             document.querySelector('#player2'),
@@ -189,7 +191,6 @@ function init() {
         document.body.classList.remove('stats-is-active');
         DOM.tabs.game.classList.add('active')
         DOM.tabs.stats.classList.remove('active')
-        randomizeTeams()
     }
 
     function showStats() {
@@ -202,18 +203,43 @@ function init() {
     }
 
     function renderOptions() {
+        const defaultOption = "<option disabled selected>Select player</option>"
         const optionsMarkup = players.sort((a, b) => a.name > b.name ? 1 : -1).map(player => {
             return `
             <option value="${player.id}">${player.name}</option>
             `
         });
         DOM.playerSelectors.forEach(selector => {
-            selector.innerHTML = optionsMarkup
+            selector.innerHTML += defaultOption
+            selector.innerHTML += optionsMarkup
         });
+    }
+    
+    function renderPlayersList() {
+        const listMarkup = players.sort((a, b) => a.name > b.name ? 1 : -1).map(player => {
+            return `<div><input type="checkbox" id="${player.id}" /><label for="${player.id}"><strong>${player.name}</strong></label></div>`
+        });
+        DOM.selectPlayerList.innerHTML = listMarkup.join('')
+
+        let checkboxInputs = document.querySelectorAll('input[type="checkbox"]')
+        checkboxInputs.forEach( item => {
+            item.addEventListener('click', () => {
+                console.log('item.checked', item.checked, Number(item.id))
+                if (item.checked) {
+                    selectedPlayers.push(Number(item.id))
+                } else {
+                    selectedPlayers = selectedPlayers.filter( id => id !== Number(item.id) )
+                }
+            })
+        })
     }
 
     function randomizeTeams() {
-        let playerIds = [...Object.keys(players).map(i => players[i].id)]
+
+        let playerIds = selectedPlayers.length ? selectedPlayers : [...Object.keys(players).map(i => players[i].id)]
+        console.log('playerIds', playerIds)
+        
+        // let checkedPlayerIds = 
         for (let index = 0; index < DOM.playerSelectors.length; index++) {
             const randomIndex = playerIds.splice(Math.floor(Math.random() * playerIds.length), 1)[0]
             const player = players.find(player => player.id == randomIndex)
@@ -528,6 +554,7 @@ function init() {
     }
 
     renderOptions();
+    renderPlayersList();
     bindEvents();
-    showStats()
+    showGame()
 }
