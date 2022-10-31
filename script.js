@@ -48,14 +48,14 @@ function init() {
             name: 'Rasmus B',
             id: 5,
         },
-        {
-            name: 'Mathilde',
-            id: 6,
-        },
-        {
-            name: 'Steffi',
-            id: 7,
-        },
+        // {
+        //     name: 'Mathilde',
+        //     id: 6,
+        // },
+        // {
+        //     name: 'Steffi',
+        //     id: 7,
+        // },
         {
             name: 'Rasmus L',
             id: 8,
@@ -64,10 +64,10 @@ function init() {
             name: 'Michael C K',
             id: 9,
         },
-        {
-            name: 'Ditte',
-            id: 10,
-        },
+        // {
+        //     name: 'Ditte',
+        //     id: 10,
+        // },
         {
             name: 'Frederik',
             id: 11,
@@ -92,22 +92,22 @@ function init() {
             name: 'Oliver',
             id: 16,
         },
-        {
-            name: 'Mikhail',
-            id: 17,
-        },
+        // {
+        //     name: 'Mikhail',
+        //     id: 17,
+        // },
         {
             name: 'Sofie',
             id: 18,
         },
-        {
-            name: 'Xavier',
-            id: 19,
-        },
-        {
-            name: 'Ignacio',
-            id: 20,
-        },
+        // {
+        //     name: 'Xavier',
+        //     id: 19,
+        // },
+        // {
+        //     name: 'Ignacio',
+        //     id: 20,
+        // },
         {
             name: 'Mussa',
             id: 21,
@@ -134,6 +134,10 @@ function init() {
         },
         {
             name: 'Sofus',
+            id: 27,
+        },
+        {
+            name: 'Jakob Storborg',
             id: 27,
         },
     ]
