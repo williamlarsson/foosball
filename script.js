@@ -215,7 +215,7 @@ function init() {
             `
         });
         DOM.playerSelectors.forEach(selector => {
-            selector.innerHTML = optionsMarkup
+            selector.innerHTML += optionsMarkup
         });
     }
 
