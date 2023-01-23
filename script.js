@@ -29,23 +29,23 @@ scoresDoc
 function init() {
     const players = [
         {
-            name: 'William',
+            name: 'William (WILA)',
             id: 1,
         },
         {
-            name: 'Anders',
+            name: 'Anders (ANEK)',
             id: 2,
         },
         {
-            name: 'Asthor',
+            name: 'Asthor (ASBR)',
             id: 3,
         },
         {
-            name: 'Nicolai',
+            name: 'Nicolai (NIFU)',
             id: 4,
         },
         {
-            name: 'Rasmus B',
+            name: 'Rasmus (RASB)',
             id: 5,
         },
         // {
@@ -57,11 +57,11 @@ function init() {
         //     id: 7,
         // },
         {
-            name: 'Rasmus L',
+            name: 'Rasmus (RALA)',
             id: 8,
         },
         {
-            name: 'Michael C K',
+            name: 'Michael (MICL)',
             id: 9,
         },
         // {
@@ -69,27 +69,27 @@ function init() {
         //     id: 10,
         // },
         {
-            name: 'Frederik',
+            name: 'Frederik (FROH)',
             id: 11,
         },
         {
-            name: 'Line',
+            name: 'Line (LTHE)',
             id: 12,
         },
         {
-            name: 'Semir',
+            name: 'Semir (SECA)',
             id: 13,
         },
+        // {
+        //     name: 'Jacob K H',
+        //     id: 14,
+        // },
         {
-            name: 'Jacob K H',
-            id: 14,
-        },
-        {
-            name: 'Anton',
+            name: 'Anton (ANHA)',
             id: 15,
         },
         {
-            name: 'Oliver',
+            name: 'Oliver (OLDU)',
             id: 16,
         },
         // {
@@ -97,7 +97,7 @@ function init() {
         //     id: 17,
         // },
         {
-            name: 'Sofie',
+            name: 'Sofie (SOSO)',
             id: 18,
         },
         // {
@@ -109,39 +109,39 @@ function init() {
         //     id: 20,
         // },
         {
-            name: 'Mussa',
+            name: 'Mussa (MUZA)',
             id: 21,
         },
         {
-            name: 'Mikolaj',
+            name: 'Mikolaj (MIKO)',
             id: 22,
         },
         {
-            name: 'Tonny',
+            name: 'Tonny (TOHO)',
             id: 23,
         },
         {
-            name: 'Jacob H',
+            name: 'Jacob (JAHI)',
             id: 24,
         },
         {
-            name: 'Nicolaj P',
+            name: 'Nicolaj (NIPE)',
             id: 25,
         },
         {
-            name: 'Anders Hartmann',
+            name: 'Anders (ANRA)',
             id: 26,
         },
         {
-            name: 'Sofus',
+            name: 'Sofus (SOBE)',
             id: 27,
         },
         {
-            name: 'Jakob Storborg',
+            name: 'Jakob (JSTO)',
             id: 28,
         },
         {
-            name: 'Andreas Nesgaard',
+            name: 'Andreas (ANEM)',
             id: 29,
         },
     ]
@@ -197,7 +197,6 @@ function init() {
         document.body.classList.remove('stats-is-active');
         DOM.tabs.game.classList.add('active')
         DOM.tabs.stats.classList.remove('active')
-        randomizeTeams()
     }
 
     function showStats() {
