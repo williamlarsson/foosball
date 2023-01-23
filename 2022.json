@@ -1,3 +1,4 @@
+[
   {
     "timestamp": "2022-12-28T11:54:12.002Z",
     "score": { "team1": 4, "team2": 10 },
@@ -7930,7 +7931,6 @@
       { "player": "Anton", "id": "15" }
     ]
   },
- [
   {
     "timestamp": "2022-03-04T10:57:57.420Z",
     "score": { "team1": 4, "team2": 10 },
@@ -9466,5 +9466,5 @@
       { "player": "Oliver", "id": "16" },
       { "player": "Nicolai", "id": "4" }
     ]
-  },
+  }
 ]
