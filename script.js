@@ -14,7 +14,6 @@ scoresDoc
     .get()
     .then((doc) => {
         if (doc.exists) {
-            window.local
             window.localStorage.setItem('scores', doc.data()['allscores'])
             console.log("Fetched document!", doc.data());
             init()
@@ -72,10 +71,10 @@ function init() {
             name: 'Frederik (FROH)',
             id: 11,
         },
-        {
-            name: 'Line (LTHE)',
-            id: 12,
-        },
+        // {
+        //     name: 'Line (LTHE)',
+        //     id: 12,
+        // },
         {
             name: 'Semir (SECA)',
             id: 13,
@@ -96,10 +95,10 @@ function init() {
         //     name: 'Mikhail',
         //     id: 17,
         // },
-        {
-            name: 'Sofie (SOSO)',
-            id: 18,
-        },
+        // {
+        //     name: 'Sofie (SOSO)',
+        //     id: 18,
+        // },
         // {
         //     name: 'Xavier',
         //     id: 19,
@@ -427,6 +426,7 @@ function init() {
 
     function renderScores() {
         const scores = JSON.parse(window.localStorage.getItem('scores'));
+        console.log('window.localStorage.getItem(\'scores\')', window.localStorage.getItem('scores'))
         if (!scores) return
         DOM.scoresContainer.innerHTML = `
             <tr>
