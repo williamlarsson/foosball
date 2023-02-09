@@ -1,5 +1,665 @@
 [
   {
+    "timestamp": "2023-02-09T11:33:55.323Z",
+    "score": { "team1": 10, "team2": 6 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Anders (ANEK)", "id": "2" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-09T11:33:42.507Z",
+    "score": { "team1": 8, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Anders (ANEK)", "id": "2" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-08T15:00:27.573Z",
+    "score": { "team1": 10, "team2": 5 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Mia (MRYV)", "id": "30" }
+    ],
+    "team2": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Michael (MICL)", "id": "9" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-08T15:00:21.945Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Mia (MRYV)", "id": "30" }
+    ],
+    "team2": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Michael (MICL)", "id": "9" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-08T13:02:27.148Z",
+    "score": { "team1": 10, "team2": 5 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Mia (MRYV)", "id": "30" }
+    ],
+    "team2": [
+      { "player": "Asthor (ASBR)", "id": "3" },
+      { "player": "Nicolai (NIFU)", "id": "4" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-08T13:02:13.564Z",
+    "score": { "team1": 0, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Mia (MRYV)", "id": "30" }
+    ],
+    "team2": [
+      { "player": "Asthor (ASBR)", "id": "3" },
+      { "player": "Nicolai (NIFU)", "id": "4" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-08T12:22:06.417Z",
+    "score": { "team1": 10, "team2": 4 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ],
+    "team2": [
+      { "player": "Anton (ANHA)", "id": "15" },
+      { "player": "Michael (MICL)", "id": "9" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-08T12:21:56.928Z",
+    "score": { "team1": 10, "team2": 5 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ],
+    "team2": [
+      { "player": "Anton (ANHA)", "id": "15" },
+      { "player": "Michael (MICL)", "id": "9" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-08T09:35:17.391Z",
+    "score": { "team1": 10, "team2": 9 },
+    "team1": [
+      { "player": "Sofus (SOBE)", "id": "27" },
+      { "player": "Michael (MICL)", "id": "9" }
+    ],
+    "team2": [
+      { "player": "Semir (SECA)", "id": "13" },
+      { "player": "Nicolai (NIFU)", "id": "4" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-07T13:43:38.164Z",
+    "score": { "team1": 10, "team2": 6 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ],
+    "team2": [
+      { "player": "Oliver (OLDU)", "id": "16" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-07T13:43:27.004Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ],
+    "team2": [
+      { "player": "Oliver (OLDU)", "id": "16" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-07T12:25:15.160Z",
+    "score": { "team1": 10, "team2": 8 },
+    "team1": [
+      { "player": "Michael (MICL)", "id": "9" },
+      { "player": "Rasmus (RALA)", "id": "8" }
+    ],
+    "team2": [
+      { "player": "Semir (SECA)", "id": "13" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-07T12:25:03.765Z",
+    "score": { "team1": 10, "team2": 7 },
+    "team1": [
+      { "player": "Michael (MICL)", "id": "9" },
+      { "player": "Rasmus (RALA)", "id": "8" }
+    ],
+    "team2": [
+      { "player": "Semir (SECA)", "id": "13" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-03T13:32:34.816Z",
+    "score": { "team1": 8, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Mia (MRYV)", "id": "30" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-03T13:32:24.107Z",
+    "score": { "team1": 10, "team2": 1 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Mia (MRYV)", "id": "30" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-03T09:40:06.084Z",
+    "score": { "team1": 10, "team2": 7 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Nicolai (NIFU)", "id": "4" }
+    ],
+    "team2": [
+      { "player": "Rasmus (RASB)", "id": "5" },
+      { "player": "Michael (MICL)", "id": "9" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-03T09:39:52.276Z",
+    "score": { "team1": 9, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Nicolai (NIFU)", "id": "4" }
+    ],
+    "team2": [
+      { "player": "Rasmus (RASB)", "id": "5" },
+      { "player": "Michael (MICL)", "id": "9" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-02T16:01:52.585Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "Anders (ANEK)", "id": "2" },
+      { "player": "William (WILA)", "id": "1" }
+    ],
+    "team2": [
+      { "player": "Asthor (ASBR)", "id": "3" },
+      { "player": "Nicolai (NIFU)", "id": "4" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-02T16:01:39.410Z",
+    "score": { "team1": 10, "team2": 8 },
+    "team1": [
+      { "player": "Anders (ANEK)", "id": "2" },
+      { "player": "William (WILA)", "id": "1" }
+    ],
+    "team2": [
+      { "player": "Asthor (ASBR)", "id": "3" },
+      { "player": "Nicolai (NIFU)", "id": "4" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-02T14:10:30.946Z",
+    "score": { "team1": 8, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Oliver (OLDU)", "id": "16" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-02T14:10:24.759Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Oliver (OLDU)", "id": "16" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-02T11:26:29.734Z",
+    "score": { "team1": 10, "team2": 7 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ],
+    "team2": [
+      { "player": "Anders (ANEK)", "id": "2" },
+      { "player": "Rasmus (RASB)", "id": "5" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-02T11:26:23.207Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ],
+    "team2": [
+      { "player": "Anders (ANEK)", "id": "2" },
+      { "player": "Rasmus (RASB)", "id": "5" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-02T10:57:24.258Z",
+    "score": { "team1": 4, "team2": 10 },
+    "team1": [
+      { "player": "Anton (ANHA)", "id": "15" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ],
+    "team2": [
+      { "player": "Oliver (OLDU)", "id": "16" },
+      { "player": "William (WILA)", "id": "1" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-02T10:57:08.631Z",
+    "score": { "team1": 7, "team2": 10 },
+    "team1": [
+      { "player": "Anton (ANHA)", "id": "15" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ],
+    "team2": [
+      { "player": "Oliver (OLDU)", "id": "16" },
+      { "player": "William (WILA)", "id": "1" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-01T15:03:24.168Z",
+    "score": { "team1": 10, "team2": 6 },
+    "team1": [
+      { "player": "Sofus (SOBE)", "id": "27" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ],
+    "team2": [
+      { "player": "Semir (SECA)", "id": "13" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-01T15:03:17.929Z",
+    "score": { "team1": 10, "team2": 4 },
+    "team1": [
+      { "player": "Sofus (SOBE)", "id": "27" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ],
+    "team2": [
+      { "player": "Semir (SECA)", "id": "13" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-01T14:41:04.254Z",
+    "score": { "team1": 10, "team2": 8 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-01T14:40:58.334Z",
+    "score": { "team1": 10, "team2": 8 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-01T14:22:03.077Z",
+    "score": { "team1": 10, "team2": 5 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Rasmus (RASB)", "id": "5" }
+    ],
+    "team2": [
+      { "player": "Semir (SECA)", "id": "13" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-01T14:21:55.384Z",
+    "score": { "team1": 7, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Rasmus (RASB)", "id": "5" }
+    ],
+    "team2": [
+      { "player": "Semir (SECA)", "id": "13" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-01T11:55:03.044Z",
+    "score": { "team1": 10, "team2": 9 },
+    "team1": [
+      { "player": "Mia (MRYV)", "id": "30" },
+      { "player": "Nicolai (NIFU)", "id": "4" }
+    ],
+    "team2": [
+      { "player": "Andreas (ANEM)", "id": "29" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-02-01T11:54:55.997Z",
+    "score": { "team1": 9, "team2": 10 },
+    "team1": [
+      { "player": "Mia (MRYV)", "id": "30" },
+      { "player": "Nicolai (NIFU)", "id": "4" }
+    ],
+    "team2": [
+      { "player": "Andreas (ANEM)", "id": "29" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-31T15:00:00.191Z",
+    "score": { "team1": 10, "team2": 8 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ],
+    "team2": [
+      { "player": "Rasmus (RASB)", "id": "5" },
+      { "player": "Anders (ANEK)", "id": "2" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-31T14:59:54.960Z",
+    "score": { "team1": 10, "team2": 9 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ],
+    "team2": [
+      { "player": "Rasmus (RASB)", "id": "5" },
+      { "player": "Anders (ANEK)", "id": "2" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-31T14:32:26.403Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "Anton (ANHA)", "id": "15" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ],
+    "team2": [
+      { "player": "Rasmus (RALA)", "id": "8" },
+      { "player": "Oliver (OLDU)", "id": "16" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-31T14:32:17.211Z",
+    "score": { "team1": 10, "team2": 3 },
+    "team1": [
+      { "player": "Anton (ANHA)", "id": "15" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ],
+    "team2": [
+      { "player": "Rasmus (RALA)", "id": "8" },
+      { "player": "Oliver (OLDU)", "id": "16" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-31T12:08:56.670Z",
+    "score": { "team1": 10, "team2": 6 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ],
+    "team2": [
+      { "player": "Anders (ANEK)", "id": "2" },
+      { "player": "Rasmus (RASB)", "id": "5" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-31T12:08:50.254Z",
+    "score": { "team1": 10, "team2": 4 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ],
+    "team2": [
+      { "player": "Anders (ANEK)", "id": "2" },
+      { "player": "Rasmus (RASB)", "id": "5" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-31T10:32:48.217Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Anders (ANEK)", "id": "2" }
+    ],
+    "team2": [
+      { "player": "Rasmus (RALA)", "id": "8" },
+      { "player": "Semir (SECA)", "id": "13" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-31T10:32:40.089Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Anders (ANEK)", "id": "2" }
+    ],
+    "team2": [
+      { "player": "Rasmus (RALA)", "id": "8" },
+      { "player": "Semir (SECA)", "id": "13" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-30T15:09:32.110Z",
+    "score": { "team1": 10, "team2": 6 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ],
+    "team2": [
+      { "player": "Andreas (ANEM)", "id": "29" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-30T13:15:06.753Z",
+    "score": { "team1": 10, "team2": 1 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ],
+    "team2": [
+      { "player": "Semir (SECA)", "id": "13" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-30T13:14:52.305Z",
+    "score": { "team1": 10, "team2": 9 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ],
+    "team2": [
+      { "player": "Semir (SECA)", "id": "13" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-27T14:08:40.779Z",
+    "score": { "team1": 10, "team2": 7 },
+    "team1": [
+      { "player": "Andreas (ANEM)", "id": "29" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-27T13:09:05.979Z",
+    "score": { "team1": 8, "team2": 10 },
+    "team1": [
+      { "player": "Anders (ANEK)", "id": "2" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ],
+    "team2": [
+      { "player": "Sofus (SOBE)", "id": "27" },
+      { "player": "Rasmus (RALA)", "id": "8" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-27T13:08:30.744Z",
+    "score": { "team1": 10, "team2": 5 },
+    "team1": [
+      { "player": "Rasmus (RALA)", "id": "8" },
+      { "player": "Sofus (SOBE)", "id": "27" }
+    ],
+    "team2": [
+      { "player": "Anders (ANEK)", "id": "2" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-27T12:05:32.121Z",
+    "score": { "team1": 7, "team2": 10 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ],
+    "team2": [
+      { "player": "Asthor (ASBR)", "id": "3" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-27T12:05:17.345Z",
+    "score": { "team1": 4, "team2": 10 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ],
+    "team2": [
+      { "player": "Asthor (ASBR)", "id": "3" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-26T11:33:51.769Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ],
+    "team2": [
+      { "player": "Oliver (OLDU)", "id": "16" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-26T11:33:44.243Z",
+    "score": { "team1": 10, "team2": 4 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ],
+    "team2": [
+      { "player": "Oliver (OLDU)", "id": "16" },
+      { "player": "Andreas (ANEM)", "id": "29" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-26T10:23:28.137Z",
+    "score": { "team1": 10, "team2": 3 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anders (ANEK)", "id": "2" }
+    ],
+    "team2": [
+      { "player": "Andreas (ANEM)", "id": "29" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-26T10:23:19.786Z",
+    "score": { "team1": 6, "team2": 10 },
+    "team1": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Anders (ANEK)", "id": "2" }
+    ],
+    "team2": [
+      { "player": "Andreas (ANEM)", "id": "29" },
+      { "player": "Anton (ANHA)", "id": "15" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-25T15:39:47.373Z",
+    "score": { "team1": 10, "team2": 9 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Mikolaj (MIKO)", "id": "22" }
+    ]
+  },
+  {
+    "timestamp": "2023-01-25T15:39:42.157Z",
+    "score": { "team1": 4, "team2": 10 },
+    "team1": [
+      { "player": "William (WILA)", "id": "1" },
+      { "player": "Asthor (ASBR)", "id": "3" }
+    ],
+    "team2": [
+      { "player": "Nicolai (NIFU)", "id": "4" },
+      { "player": "Mikolaj (MIKO)", "id": "22" }
+    ]
+  },
+  {
     "timestamp": "2023-01-23T16:06:14.355Z",
     "score": { "team1": 10, "team2": 7 },
     "team1": [
@@ -99,7 +759,7 @@
     "timestamp": "2023-01-20T17:02:22.156Z",
     "score": { "team1": 10, "team2": 6 },
     "team1": [
-      { "player": "Nicolai (NIFU)", "id": "27" },
+      { "player": "Nicolai (NIFU)", "id": "4" },
       { "player": "Semir (SECA)", "id": "9" }
     ],
     "team2": [
@@ -111,7 +771,7 @@
     "timestamp": "2023-01-20T13:02:22.156Z",
     "score": { "team1": 10, "team2": 0 },
     "team1": [
-      { "player": "Nicolai (NIFU)", "id": "27" },
+      { "player": "Nicolai (NIFU)", "id": "4" },
       { "player": "Semir (SECA)", "id": "9" }
     ],
     "team2": [
