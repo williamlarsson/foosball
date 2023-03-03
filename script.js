@@ -147,6 +147,10 @@ function init() {
             name: 'Mia (MRYV)',
             id: 30,
         },
+        {
+            name: 'Johan (JODY)',
+            id: 31,
+        },
     ]
     const now = new Date();
     const oneMonthAgo = new Date(new Date(now).setDate(now.getDate() - 29));
