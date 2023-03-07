@@ -127,10 +127,10 @@ function init() {
         //     name: 'Nicolaj (NIPE)',
         //     id: 25,
         // },
-        {
-            name: 'Anders (ANRA)',
-            id: 26,
-        },
+        // {
+        //     name: 'Anders (ANRA)',
+        //     id: 26,
+        // },
         {
             name: 'Sofus (SOBE)',
             id: 27,
