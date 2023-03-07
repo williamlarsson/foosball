@@ -111,22 +111,22 @@ function init() {
             name: 'Mussa (MUZA)',
             id: 21,
         },
-        {
-            name: 'Mikolaj (MIKO)',
-            id: 22,
-        },
-        {
-            name: 'Tonny (TOHO)',
-            id: 23,
-        },
+        // {
+        //     name: 'Mikolaj (MIKO)',
+        //     id: 22,
+        // },
+        // {
+        //     name: 'Tonny (TOHO)',
+        //     id: 23,
+        // },
         {
             name: 'Jacob (JAHI)',
             id: 24,
         },
-        {
-            name: 'Nicolaj (NIPE)',
-            id: 25,
-        },
+        // {
+        //     name: 'Nicolaj (NIPE)',
+        //     id: 25,
+        // },
         {
             name: 'Anders (ANRA)',
             id: 26,
