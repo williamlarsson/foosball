@@ -47,14 +47,6 @@ function init() {
             name: 'Rasmus (RASB)',
             id: 5,
         },
-        // {
-        //     name: 'Mathilde',
-        //     id: 6,
-        // },
-        // {
-        //     name: 'Steffi',
-        //     id: 7,
-        // },
         {
             name: 'Rasmus (RALA)',
             id: 8,
