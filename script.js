@@ -114,10 +114,10 @@ function init() {
             name: 'Jacob (JAHI)',
             id: 24,
         },
-        // {
-        //     name: 'Nicolaj (NIPE)',
-        //     id: 25,
-        // },
+        {
+            name: 'Nicolaj (NIPE)',
+            id: 25,
+        },
         // {
         //     name: 'Anders (ANRA)',
         //     id: 26,
