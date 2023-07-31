@@ -15,7 +15,6 @@ scoresDoc
     .then((doc) => {
         if (doc.exists) {
             window.localStorage.setItem('scores', doc.data()['allscores'])
-            console.log("Fetched document!", doc.data());
             init()
         } else {
             console.log("No such document!");
@@ -142,6 +141,10 @@ function init() {
         {
             name: 'Johan (JODY)',
             id: 31,
+        },
+        {
+            name: 'Carlos (CACO)',
+            id: 32,
         },
     ]
     const now = new Date();
@@ -426,7 +429,6 @@ function init() {
 
     function renderScores() {
         const scores = JSON.parse(window.localStorage.getItem('scores'));
-        console.log('window.localStorage.getItem(\'scores\')', window.localStorage.getItem('scores'))
         if (!scores) return
         DOM.scoresContainer.innerHTML = `
             <tr>
