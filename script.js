@@ -347,6 +347,7 @@ function init() {
                         existingPlayer.goalsFor += score.score.team1
                         existingPlayer.goalsAgainst += score.score.team2
                         existingPlayer.goalDifference += score.score.team1 - score.score.team2
+                        existingPlayer.receivedBonus += team1Percentage
                         existingPlayer.score = existingPlayer.score + rankedScore
                         existingPlayer.scoreHistory.push(rankedScore)
                         if (score.score.team1 === 0) {
@@ -365,6 +366,7 @@ function init() {
                             goalsFor: score.score.team1,
                             goalsAgainst: score.score.team2,
                             goalDifference: score.score.team1 - score.score.team2,
+                            receivedBonus: team1Percentage,
                             score: rankedScore,
                             scoreHistory: [rankedScore]
                         }
@@ -387,6 +389,7 @@ function init() {
                         existingPlayer.goalsFor += score.score.team2
                         existingPlayer.goalsAgainst += score.score.team1
                         existingPlayer.goalDifference += score.score.team2 - score.score.team1
+                        existingPlayer.receivedBonus += team2Percentage
                         existingPlayer.score = existingPlayer.score + rankedScore
                         existingPlayer.scoreHistory.push(rankedScore)
                         if (score.score.team2 === 0) {
@@ -405,6 +408,7 @@ function init() {
                             goalsFor: score.score.team2,
                             goalsAgainst: score.score.team1,
                             goalDifference: score.score.team2 - score.score.team1,
+                            receivedBonus: team2Percentage,
                             score: rankedScore,
                             scoreHistory: [rankedScore]
                         }
@@ -471,6 +475,7 @@ function init() {
                     <th>Goal +/-</th>
                     <th>Form</th>
                     <th>Last 5</th>
+                    <th>Bonus</th>
                     <th>Score</th>
                 </tr>
             `;
@@ -509,6 +514,7 @@ function init() {
                         <td>${player.goalDifference}</td>
                         <td><span class="form ${calcForm(lastFive.toFixed(2))}" ></span></td>
                         <td >${lastFive.toFixed(2)}</td>
+                        <td >${(player.receivedBonus * 10).toFixed(2)}%</td>
                         <td class="bold">${player.score.toFixed(2)}</td>
                     </tr>
                 `
