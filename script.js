@@ -289,7 +289,7 @@ function init() {
     }
 
     function calcRoundScore(win, loose, goalDiff, playerScore = 0) {
-        return win - loose + (goalDiff / 2)
+        return ( (win - loose) * 2) + (goalDiff / 2)
     }
 
     function calcForm(score) {
