@@ -325,6 +325,7 @@ function init() {
         const scores = JSON.parse(window.localStorage.getItem('scores'));
         scores.reverse()
         let table = [];
+
         scores.forEach(score => {
             if (!score.timestamp) return
             const scoreDate = new Date(score.timestamp)
@@ -336,28 +337,25 @@ function init() {
 
                 score.team1.forEach(player => {
                     const existingPlayer = table.find(entry => entry.id === player.id)
+                    const win = didTeam1Win ? 1 : 0
+                    const loose = !didTeam1Win ? 1 : 0
+                    const roundScore = calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer?.score || 0)
+                    const bonusPoints = parseFloat(Math.abs(roundScore) * team1Percentage)
+                    const rankedScore = parseFloat(roundScore + bonusPoints)
                     if (existingPlayer) {
-                        const win = didTeam1Win ? 1 : 0
-                        const loose = !didTeam1Win ? 1 : 0
-                        const roundScore = calcRoundScore(win, loose, score.score.team1 - score.score.team2, existingPlayer.score)
-                        const rankedScore = parseFloat(roundScore + (Math.abs(roundScore) * team1Percentage))
-
+                        
                         existingPlayer.wins += win
                         existingPlayer.losses += loose
                         existingPlayer.goalsFor += score.score.team1
                         existingPlayer.goalsAgainst += score.score.team2
                         existingPlayer.goalDifference += score.score.team1 - score.score.team2
-                        existingPlayer.receivedBonus += team1Percentage
+                        existingPlayer.receivedBonus += bonusPoints
                         existingPlayer.score = existingPlayer.score + rankedScore
                         existingPlayer.scoreHistory.push(rankedScore)
                         if (score.score.team1 === 0) {
                             existingPlayer.hasBeenEgged = true
                         }
                     } else {
-                        const win = didTeam1Win ? 1 : 0
-                        const loose = !didTeam1Win ? 1 : 0
-                        const roundScore = calcRoundScore(win, loose, score.score.team1 - score.score.team2)
-                        const rankedScore = parseFloat(roundScore + (Math.abs(roundScore) * team1Percentage))
                         const playerEntry = {
                             name: player.player,
                             id: player.id,
@@ -366,7 +364,7 @@ function init() {
                             goalsFor: score.score.team1,
                             goalsAgainst: score.score.team2,
                             goalDifference: score.score.team1 - score.score.team2,
-                            receivedBonus: team1Percentage,
+                            receivedBonus: bonusPoints,
                             score: rankedScore,
                             scoreHistory: [rankedScore]
                         }
@@ -379,27 +377,25 @@ function init() {
                 });
                 score.team2.forEach(player => {
                     const existingPlayer = table.find(entry => entry.id === player.id)
+                    const win = didTeam2Win ? 1 : 0
+                    const loose = !didTeam2Win ? 1 : 0
+                    const roundScore = calcRoundScore(win, loose, score.score.team2 - score.score.team1, existingPlayer?.score || 0)
+                    const bonusPoints = parseFloat(Math.abs(roundScore) * team2Percentage)
+                    const rankedScore = parseFloat(roundScore + bonusPoints)
+                    
                     if (existingPlayer) {
-                        const win = didTeam2Win ? 1 : 0
-                        const loose = !didTeam2Win ? 1 : 0
-                        const roundScore = parseFloat(calcRoundScore(win, loose, score.score.team2 - score.score.team1, existingPlayer.score))
-                        const rankedScore = roundScore + (Math.abs(roundScore) * team2Percentage)
                         existingPlayer.wins += win
                         existingPlayer.losses += loose
                         existingPlayer.goalsFor += score.score.team2
                         existingPlayer.goalsAgainst += score.score.team1
                         existingPlayer.goalDifference += score.score.team2 - score.score.team1
-                        existingPlayer.receivedBonus += team2Percentage
+                        existingPlayer.receivedBonus += bonusPoints
                         existingPlayer.score = existingPlayer.score + rankedScore
                         existingPlayer.scoreHistory.push(rankedScore)
                         if (score.score.team2 === 0) {
                             existingPlayer.hasBeenEgged = true
                         }
                     } else {
-                        const win = didTeam2Win ? 1 : 0
-                        const loose = !didTeam2Win ? 1 : 0
-                        const roundScore = calcRoundScore(win, loose, score.score.team2 - score.score.team1)
-                        const rankedScore = parseFloat(roundScore + (Math.abs(roundScore) * team2Percentage))
                         const playerEntry = {
                             name: player.player,
                             id: player.id,
@@ -408,7 +404,7 @@ function init() {
                             goalsFor: score.score.team2,
                             goalsAgainst: score.score.team1,
                             goalDifference: score.score.team2 - score.score.team1,
-                            receivedBonus: team2Percentage,
+                            receivedBonus: bonusPoints,
                             score: rankedScore,
                             scoreHistory: [rankedScore]
                         }
@@ -475,7 +471,7 @@ function init() {
                     <th>Goal +/-</th>
                     <th>Form</th>
                     <th>Last 5</th>
-                    <th>Bonus</th>
+                    <th>Bonus points</th>
                     <th>Score</th>
                 </tr>
             `;
@@ -514,7 +510,7 @@ function init() {
                         <td>${player.goalDifference}</td>
                         <td><span class="form ${calcForm(lastFive.toFixed(2))}" ></span></td>
                         <td >${lastFive.toFixed(2)}</td>
-                        <td >${(player.receivedBonus * 10).toFixed(2)}%</td>
+                        <td >${(player.receivedBonus).toFixed(2)}</td>
                         <td class="bold">${player.score.toFixed(2)}</td>
                     </tr>
                 `
